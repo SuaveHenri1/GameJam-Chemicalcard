@@ -97,3 +97,7 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# É um aquivo de script para atualizar o projeto com git, não é necessário versionar ele, pois cada um pode ter uma branch diferente
+# Tenho ele pois me ajuda a atualizar o projeto
+atualiza_projeto_git.sh 

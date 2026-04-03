@@ -1,0 +1,7 @@
+{
+    "receitas" : [
+        { "ingredientes": ["H", "O"],       "resultado": "Agua"},
+        { "ingredientes": ["Na", "Cl"],     "resultado": "Sal"},
+        { "ingredientes": ["H", "H", "O"],  "resultado": "Explosao"}
+    ]
+}
