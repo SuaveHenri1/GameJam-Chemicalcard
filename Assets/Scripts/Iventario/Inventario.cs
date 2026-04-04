@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Classe para representar o inventário do jogador, contendo uma lista de elementos.
-public class Iventario : MonoBehaviour
+public class Inventario : MonoBehaviour
 {
      // Um dicionario para guardar os elementos e suas quantidades
     private Dictionary<Elemento, int> elementos;
     
-    Iventario()
+    void Awake()
     {
         elementos = new Dictionary<Elemento, int>();
     } 

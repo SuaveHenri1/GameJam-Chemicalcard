@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CraftingMager : MonoBehaviour
+public class CraftingManager : MonoBehaviour
 {
     public ReceitaLista receitaLista;
 

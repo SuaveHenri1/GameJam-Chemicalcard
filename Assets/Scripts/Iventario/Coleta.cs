@@ -5,14 +5,14 @@ public class Coleta : MonoBehaviour
 {
     public Elemento elemento; // Símbolo do elemento a ser coletado
 
-    public void ColetarElementos(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Iventario iventario = other.GetComponent<Iventario>();
-            if (iventario != null)
+            Inventario inventario = other.GetComponent<Inventario>();
+            if (inventario != null)
             {
-                iventario.adicionarElemento(elemento, 1); // Adiciona 1 unidade do elemento ao inventário
+                inventario.AdicionarElemento(elemento, 1); // Adiciona 1 unidade do elemento ao inventário
                 Debug.Log($"Coletado: {elemento.nome}");
                 Destroy(gameObject); // Destroi o objeto coletável após a coleta
             }
