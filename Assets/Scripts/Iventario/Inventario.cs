@@ -5,7 +5,8 @@ using UnityEngine;
 public class Inventario : MonoBehaviour
 {
      // Um dicionario para guardar os elementos e suas quantidades
-    private Dictionary<Elemento, int> elementos;
+    public Dictionary<Elemento, int> elementos;
+
     
     void Awake()
     {

@@ -165,13 +165,3 @@ ResultadoManager exibe mensagem
 ```
 
 ---
-
-## 🚀 Possíveis Melhorias
-
-* 🔹 Usar JSON para receitas (como você comentou antes 👀)
-* 🔹 Transformar `string` em `enum` (mais seguro)
-* 🔹 Criar sistema de UI ao invés de Debug.Log
-* 🔹 Permitir receitas com ordem irrelevante (já está parcialmente implementado)
-* 🔹 Adicionar quantidade (ex: 2x H + 1x O)
-
----

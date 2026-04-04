@@ -282,14 +282,3 @@ Resultado → exibido
 ```
 
 ---
-
-## 📌 Conclusão
-
-Você já tem um sistema bem sólido com:
-
-✅ Coleta no mapa
-✅ Armazenamento eficiente
-✅ Controle de quantidade
-✅ Base perfeita para crafting
-
----
