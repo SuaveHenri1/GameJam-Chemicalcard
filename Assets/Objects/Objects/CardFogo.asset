@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd08ee8fcd179dbe7b07679aee0c4077, type: 3}
   m_Name: CardFogo
   m_EditorClassIdentifier: Assembly-CSharp::Objects
-  nome: Carta Terra
+  nome: Carta Fogo
   poder: 0
-  imagem: {fileID: 21300000, guid: 7e82ba6903b745a7db1ee0a79cd89cca, type: 3}
+  imagem: {fileID: 21300000, guid: 1e1cdb4b052d182e88f8224174a434cc, type: 3}

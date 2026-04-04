@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 // Classe para representar o inventário do jogador, contendo uma lista de elementos.
@@ -6,12 +7,33 @@ public class Inventario : MonoBehaviour
 {
      // Um dicionario para guardar os elementos e suas quantidades
     public Dictionary<Elemento, int> elementos;
+    public GameObject interfaceInventario; // Referência ao objeto de interface do inventário
 
+    bool inventarioAtivo = false; // Controle de visibilidade do inventário
     
     void Awake()
     {
         elementos = new Dictionary<Elemento, int>();
     } 
+
+
+    void Update()
+    {
+        // Alterna a visibilidade do inventário ao pressionar a tecla "I"
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            inventarioAtivo = !inventarioAtivo; // Alterna o estado de visibilidade
+            if (interfaceInventario != null)
+            {
+                interfaceInventario.SetActive(inventarioAtivo); // Ativa ou desativa a interface do inventário
+            }
+            Debug.Log($"Inventário {(inventarioAtivo ? "ativado" : "desativado")}.");
+        }
+        if (inventarioAtivo)
+        {
+            //Cursor.lockState = CursorLockMode.None; // Libera o cursor para interação com a interface
+        }
+    }
 
     // Método para adicionar um elemento ao inventário
     public void AdicionarElemento(Elemento elemento, int quantidade)
