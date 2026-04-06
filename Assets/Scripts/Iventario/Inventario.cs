@@ -1,79 +1,41 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI; // Importa a biblioteca para usar UI, como Image
 
 // Classe para representar o inventário do jogador, contendo uma lista de elementos.
 public class Inventario : MonoBehaviour
 {
-     // Um dicionario para guardar os elementos e suas quantidades
-    public Dictionary<Elemento, int> elementos;
-    public GameObject interfaceInventario; // Referência ao objeto de interface do inventário
+     public Moleculas[] slots; // Lista para armazenar os elementos e suas quantidades
+    public Image[] SlotImagem; // Lista para armazenar as imagens dos elementos (opcional, para interface)
+    public int[] SlotQuantidade; // Lista para armazenar as SlotQuantidade correspondentes aos elementos
+    public Text[] SlotQuantidadeText; // Lista para armazenar os textos de quantidade (opcional, para interface)
 
-    bool inventarioAtivo = false; // Controle de visibilidade do inventário
-    
-    void Awake()
+
+    void Start()
     {
-        elementos = new Dictionary<Elemento, int>();
-    } 
-
-
-    void Update()
-    {
-        // Alterna a visibilidade do inventário ao pressionar a tecla "I"
-        if (Input.GetKeyDown(KeyCode.I))
+        // Inicializa as listas de quantidade e imagens, se necessário
+        foreach (Text quantidadeText in SlotQuantidadeText)
         {
-            inventarioAtivo = !inventarioAtivo; // Alterna o estado de visibilidade
-            if (interfaceInventario != null)
-            {
-                interfaceInventario.SetActive(inventarioAtivo); // Ativa ou desativa a interface do inventário
-            }
-            Debug.Log($"Inventário {(inventarioAtivo ? "ativado" : "desativado")}.");
-        }
-        if (inventarioAtivo)
-        {
-            //Cursor.lockState = CursorLockMode.None; // Libera o cursor para interação com a interface
+            quantidadeText.gameObject.SetActive(false); // Esconde os textos de quantidade inicialmente
         }
     }
 
     // Método para adicionar um elemento ao inventário
-    public void AdicionarElemento(Elemento elemento, int quantidade)
+    public void AdicionarElemento(Moleculas elemento, int quantidade)
     {
-        if (elementos.ContainsKey(elemento))
+        for (int i=0; i < slots.Length; i++)
         {
-            elementos[elemento] += quantidade; // Se o elemento já existe, incrementa a quantidade
-        }
-        else
-        {
-            elementos[elemento] = quantidade; // Caso contrário, adiciona o elemento ao dicionário
-        }
-        Debug.Log($"Adicionado {quantidade} de {elemento.nome}. Total agora: {elementos[elemento]}");
-    }
-
-    // Método para verificar se um elemento existe no inventário com uma quantidade suficiente
-    public bool VerificarElemento(Elemento elemento, int quantidade)
-    {
-        return elementos.ContainsKey(elemento) && elementos[elemento] >= quantidade; // Verifica se o elemento existe e se a quantidade é suficiente
-    }
-
-    // Método para remover um elemento do inventário
-    public void RemoverElemento(Elemento elemento, int quantidade)
-    {
-        if (elementos.ContainsKey(elemento))
-        {
-            elementos[elemento] -= quantidade; // Decrementa a quantidade do elemento
-            if (elementos[elemento] <= 0)
+            if (slots[i] == null || slots[i].nome == elemento.nome) // Verifica se o slot está vazio ou já contém o mesmo elemento
             {
-                elementos.Remove(elemento); // Remove o elemento se a quantidade for zero ou negativa
-                Debug.Log($"{elemento.nome} removido do inventário.");
-            }
-            else
-            {
-                Debug.Log($"Removido {quantidade} de {elemento.nome}. Total agora: {elementos[elemento]}");
-            }
-        }
-        else
-        {
-            Debug.LogWarning($"Não é possível remover {elemento.nome} - elemento não encontrado no inventário.");
+                slots[i] = elemento; // Adiciona o elemento ao slot
+                SlotQuantidade[i] += quantidade; // Incrementa a quantidade do elemento
+                SlotImagem[i].sprite = elemento.imagem; // Atualiza a imagem do slot (opcional)
+                SlotQuantidadeText[i].text = SlotQuantidade[i].ToString(); // Atualiza o texto de quantidade (opcional)
+                SlotQuantidadeText[i].gameObject.SetActive(true); // Mostra o texto de quantidade
+                Debug.Log($"Adicionado {quantidade} de {elemento.nome} no slot {i}. Total agora: {SlotQuantidade[i]}");
+                break; // Sai do loop após adicionar o elemento
+            }   
         }
     }
 }
