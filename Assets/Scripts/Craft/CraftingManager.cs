@@ -3,11 +3,28 @@ using UnityEngine;
 
 public class CraftingManager : MonoBehaviour
 {
-    public ReceitaLista receitaLista;
+    public List<Receita> receitasList; // Lista de receitas carregadas do JSON
+
+    void Start()
+    {
+        // Carrega o arquivo JSON das receitas da pasta Resources
+        TextAsset jsonText = Resources.Load<TextAsset>("receitas");
+        if (jsonText != null)
+        {
+            // Desserializa o JSON para a estrutura de dados ReceitaLista
+            ReceitaLista receitaLista = JsonUtility.FromJson<ReceitaLista>(jsonText.text);
+            receitasList = receitaLista.receitas; // Atribui a lista de receitas carregadas
+            Debug.Log($"Receitas carregadas: {receitasList.Count}");
+        }
+        else
+        {
+            Debug.LogError("Não foi possível carregar o arquivo de receitas.");
+        }
+    }
 
     public string Craft(List<string> ingredientes)
     {
-        foreach (Receita receita in receitaLista.receitas)
+        foreach (Receita receita in receitasList)
         {
             if (PodeCraftar(ingredientes, receita.ingredientes))
             {
