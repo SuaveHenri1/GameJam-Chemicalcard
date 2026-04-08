@@ -8,8 +8,8 @@ public class Inventario : MonoBehaviour
 {
     public Moleculas[] slots; 
     public Image[] SlotImagem;
-    public int[] SlotQuantidade; 
-    public Text[] SlotQuantidadeText; 
+    //public int[] SlotQuantidade; 
+    //public Text[] SlotQuantidadeText; 
 
 
     public List<string> ingredientesCrafting = new List<string>(); 
@@ -18,11 +18,8 @@ public class Inventario : MonoBehaviour
     public Button botaoCraft; 
 
 
-    public ResultadoManager resultadoManager; 
-    public Cartas[] slotsCartas; 
-    public Image[] SlotImagemCartas; 
-    public int[] SlotQuantidadeCartas; 
-    public Text[] SlotQuantidadeTextCartas; 
+    public ResultadoManager resultadoManager;
+    public BarraController Barra;
 
     public string[] Elementos = {
             "H", "He",
@@ -41,11 +38,11 @@ public class Inventario : MonoBehaviour
         // Inicializa as listas de quantidade e imagens, se necessário
         for (int i=0; i < 118; i++)
         {
-            SlotQuantidadeText[i].gameObject.SetActive(false); 
             SlotImagem[i].gameObject.SetActive(false); 
         }
         craftingManager = GetComponent<CraftingManager>(); 
-        resultadoManager = GetComponent<ResultadoManager>(); 
+        resultadoManager = GetComponent<ResultadoManager>();
+        Barra = GetComponent<BarraController>();
         if (botaoCraft != null)
         {
             botaoCraft.onClick.AddListener(EnviarIngredientesCrafting); 
@@ -53,7 +50,7 @@ public class Inventario : MonoBehaviour
     }
 
     // Método para adicionar um elemento ao inventário
-    public void AdicionarElemento(Moleculas elemento, int quantidade)
+    public void AdicionarElemento(Moleculas elemento)
     {
         int elementoIndex = System.Array.IndexOf(Elementos, elemento.nome); // Encontra o índice do elemento na tabela periódica
         if (elementoIndex == -1)
@@ -64,15 +61,16 @@ public class Inventario : MonoBehaviour
 
         slots[elementoIndex] = elemento; // Armazena o elemento no slot correspondente
 
-        SlotQuantidade[elementoIndex] += quantidade; // Incrementa a quantidade do elemento no slot correspondente
+        // SlotQuantidade[elementoIndex] += quantidade; // Incrementa a quantidade do elemento no slot correspondente
 
-        SlotQuantidadeText[elementoIndex].text = SlotQuantidade[elementoIndex].ToString(); // Atualiza o texto de quantidade (opcional)
-        SlotQuantidadeText[elementoIndex].gameObject.SetActive(true); // Mostra o texto de quantidade
+        // SlotQuantidadeText[elementoIndex].text = SlotQuantidade[elementoIndex].ToString(); // Atualiza o texto de quantidade (opcional)
+        // SlotQuantidadeText[elementoIndex].gameObject.SetActive(true); // Mostra o texto de quantidade
+
 
         SlotImagem[elementoIndex].sprite = elemento.imagem; // Atualiza a imagem do slot (opcional)
-        SlotImagem[elementoIndex].gameObject.SetActive(true); // Mostra a imagem do slot
         Button btn = SlotImagem[elementoIndex].GetComponent<Button>();
-        if (btn == null)        {
+        if (btn == null){
+            SlotImagem[elementoIndex].gameObject.SetActive(true); // Mostra a imagem do slot
             btn = SlotImagem[elementoIndex].gameObject.AddComponent<Button>();
         }
         btn.transition = Selectable.Transition.ColorTint; // Feedback visual
@@ -80,112 +78,44 @@ public class Inventario : MonoBehaviour
         string simbolo = elemento.nome; // Captura o nome do elemento para usar no listener
         btn.onClick.RemoveAllListeners(); // Remove listeners anteriores para evitar múltiplas chamadas
         btn.onClick.AddListener(() => OnClickElemento(simbolo, elementoIndex)); // Adiciona um listener que chama o método de clique passando o nome do elemento e o índice
-
-        Debug.Log($"Adicionado {quantidade} de {elemento.nome} no slot {elementoIndex}. Total agora: {SlotQuantidade[elementoIndex]}");
     }
 
     void OnClickElemento(string simbolo, int index)
     {
-        if (SlotQuantidade[index] > 0)
-        {
-            // Criar uma nova imagem para representar o ingrediente selecionado
-            GameObject novaImagem = new GameObject($"Ingrediente_{simbolo}"); // Nome do objeto para organização
-            novaImagem.transform.SetParent(conteudoCrafting.transform); // Define o pai da nova imagem para o painel de ingredientes
-            Image img = novaImagem.AddComponent<Image>(); // Adiciona o componente Image para mostrar a imagem do ingrediente
-            img.sprite = SlotImagem[index].sprite; 
-            img.rectTransform.localScale = Vector3.one; 
-            Button btn = novaImagem.AddComponent<Button>(); 
-            btn.transition = Selectable.Transition.ColorTint; 
-            btn.targetGraphic = img; 
-            btn.onClick.AddListener(() => {
-                ingredientesCrafting.Remove(simbolo); 
-                Destroy(novaImagem); 
-                SlotQuantidade[index]++;
-                SlotQuantidadeText[index].text = SlotQuantidade[index].ToString(); 
-                if (SlotQuantidade[index] > 0)                {
-                    SlotQuantidadeText[index].gameObject.SetActive(true); 
-                    SlotImagem[index].gameObject.SetActive(true); 
-                }
-                Debug.Log($"Ingrediente {simbolo} removido dos ingredientes de crafting. Quantidade restante: {SlotQuantidade[index]}");
-            }); 
+        
+        // Criar uma nova imagem para representar o ingrediente selecionado
+        GameObject novaImagem = new GameObject($"Ingrediente_{simbolo}"); // Nome do objeto para organização
+        novaImagem.transform.SetParent(conteudoCrafting.transform); // Define o pai da nova imagem para o painel de ingredientes
+        Image img = novaImagem.AddComponent<Image>(); // Adiciona o componente Image para mostrar a imagem do ingrediente
+        img.sprite = SlotImagem[index].sprite; 
+        img.rectTransform.localScale = Vector3.one; 
+        Button btn = novaImagem.AddComponent<Button>(); 
+        btn.transition = Selectable.Transition.ColorTint; 
+        btn.targetGraphic = img; 
+        btn.onClick.AddListener(() => {
+            ingredientesCrafting.Remove(simbolo); 
+            Destroy(novaImagem);
+        }); 
 
-            ingredientesCrafting.Add(simbolo); 
-            SlotQuantidade[index]--; 
-            SlotQuantidadeText[index].text = SlotQuantidade[index].ToString(); 
-            Debug.Log($"Elemento {simbolo} adicionado aos ingredientes de crafting. Quantidade restante: {SlotQuantidade[index]}");
-            if (SlotQuantidade[index] <= 0)
-            {
-                SlotQuantidadeText[index].gameObject.SetActive(false); 
-                SlotImagem[index].gameObject.SetActive(false); 
-                Debug.Log($"Elemento {simbolo} esgotado no slot {index}.");
-            }
-        }
-        else
-        {
-            Debug.Log($"Elemento {simbolo} sem quantidade disponível para clicar.");
-        }
+        ingredientesCrafting.Add(simbolo);
     }
-
+    //*
     void EnviarIngredientesCrafting()
     {
         string resultado = craftingManager.Craft(ingredientesCrafting); // Chama o método de crafting passando os ingredientes selecionados
         if (resultado != null)
         {
-            for (int i=0; i < SlotImagemCartas.Length; i++)
-            {
-                // Já existe a carta no inventário, então incrementa a quantidade
-                if(slotsCartas[i] != null && slotsCartas[i].nome == resultado)
-                {
-                    SlotQuantidadeCartas[i]++; 
-                    SlotQuantidadeTextCartas[i].text = SlotQuantidadeCartas[i].ToString(); 
-                    SlotQuantidadeTextCartas[i].gameObject.SetActive(true); 
-                    Debug.Log($"Carta {resultado} já existe. Quantidade agora: {SlotQuantidadeCartas[i]}");
-                    break; 
-                }
-                else if (slotsCartas[i] == null)
-                {
-                    // Encontra o índice da carta correspondente ao resultado
-                    Cartas cartaResultado = resultadoManager.ExibirResultado(resultado); // Obtém a carta correspondente ao resultado do crafting
-                    if (cartaResultado != null)
-                    {
-                        slotsCartas[i] = cartaResultado; 
-                        SlotImagemCartas[i].sprite = cartaResultado.imagem; 
-                        SlotImagemCartas[i].gameObject.SetActive(true); 
-                        SlotQuantidadeCartas[i] = 1; 
-                        SlotQuantidadeTextCartas[i].text = "1"; 
-                        SlotQuantidadeTextCartas[i].gameObject.SetActive(true); 
-                        Debug.Log($"Carta {resultado} adicionada ao inventário. Quantidade: 1");
-                        break;
-                    }
-                    else
-                    {
-                        Debug.LogError($"Carta para o resultado {resultado} não encontrada nas receitas.");
-                    }
-                }
-            }
+            Cartas cartas =  resultadoManager.ExibirResultado(resultado); // Mostra o resultado do crafting na interface
+            Debug.Log($"Crafting bem-sucedido! Resultado: {resultado}");
+            Barra.AddCarta(cartas); // Adiciona a carta resultante à barra de cartas
         }
         else
         {
-            foreach (string elemento in ingredientesCrafting)
-            {
-                int elementoIndex = System.Array.IndexOf(Elementos, elemento); // Encontra o índice do elemento na tabela periódica
-                if (elementoIndex != -1)
-                {
-                    SlotQuantidade[elementoIndex]++; 
-                    SlotQuantidadeText[elementoIndex].text = SlotQuantidade[elementoIndex].ToString(); 
-                    SlotQuantidadeText[elementoIndex].gameObject.SetActive(true); 
-                    SlotImagem[elementoIndex].gameObject.SetActive(true); 
-                    Debug.Log($"Ingrediente {elemento} devolvido ao inventário. Quantidade agora: {SlotQuantidade[elementoIndex]}");
-                }
-                else
-                {
-                    Debug.LogWarning($"Elemento {elemento} não encontrado na tabela periódica para devolução.");
-                }
-            }
             Debug.Log("Crafting falhou. Ingredientes não correspondem a nenhuma receita.");
         }
 
         conteudoCrafting.transform.DetachChildren();
         ingredientesCrafting.Clear();
     }
+    //*/  
 }

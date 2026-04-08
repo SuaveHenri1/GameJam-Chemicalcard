@@ -37,7 +37,7 @@ public class MoleculasType : MonoBehaviour
             Inventario inventario = other.GetComponent<Inventario>();
             if (inventario != null)
             {
-                inventario.AdicionarElemento(moleculasType, moleculasType.quantidade);
+                inventario.AdicionarElemento(moleculasType);
                 Debug.Log($"Coletado: {moleculasType.nome}");
                 Destroy(gameObject);
             }
