@@ -25,10 +25,13 @@ public class CanvaController : MonoBehaviour
         if (inventarioAtivo)
         {
             Cursor.lockState = CursorLockMode.None; // Libera o cursor para interação com a interface
+            // pausar o jogo
+             Time.timeScale = 0f; // Pausa o jogo
         }
         else
         {
             Cursor.lockState = CursorLockMode.Locked; // Trava o cursor para controle do personagem
+            Time.timeScale = 1f; // Retoma o jogo
         }
     }
 }

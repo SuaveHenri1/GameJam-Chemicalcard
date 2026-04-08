@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf4e239dcb8cc495857c41956c12bb0, type: 3}
   m_Name: Agua
   m_EditorClassIdentifier: Assembly-CSharp::Cartas
-  nome: H2O
-  tipo: agua
+  nome: Agua
+  tipo: Liquido
   quantidade: 1
   imagem: {fileID: 21300000, guid: a10932efd6efa8c9d9a097640a733aef, type: 3}
