@@ -7,9 +7,9 @@ public class CanvaController : MonoBehaviour
     public GameObject interfaceInventario; // Referência ao objeto de interface do inventário
     public GameObject interfaceBarra; // Referência ao objeto de interface do crafting (se necessário)
     public GameObject InterfaceDialogo; // Referência ao objeto de interface do diálogo
-    bool inventarioAtivo = false; // Controle de visibilidade do inventário
     public CanvasGroup barraDialogoCanvasGroup;
     public CanvasGroup barraCanvasGroup;
+    bool inventarioAtivo = false; // Controle de visibilidade do inventário
 
 
     void Start()
