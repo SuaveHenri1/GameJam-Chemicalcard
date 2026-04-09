@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class CanvaController : MonoBehaviour
 {
-<<<<<<< HEAD
     public GameObject interfaceInventario; // Referência ao objeto de interface do inventário
     public GameObject interfaceBarra; // Referência ao objeto de interface do crafting (se necessário)
     public GameObject InterfaceDialogo; // Referência ao objeto de interface do diálogo
     bool inventarioAtivo = false; // Controle de visibilidade do inventário
     public CanvasGroup barraDialogoCanvasGroup;
- 
-=======
-    public GameObject interfaceInventario;
-    public GameObject interfaceBarra;
-    public CanvasGroup barraCanvasGroup; // Arraste o CanvasGroup aqui
-    
-    bool inventarioAtivo = false;
-    
+
     void Start()
     {
+        // Pega o CanvasGroup automaticamente se não foi atribuído
+        if (InterfaceDialogo != null && barraDialogoCanvasGroup == null)
+        {
+            barraDialogoCanvasGroup = InterfaceDialogo.GetComponent<CanvasGroup>();
+            if (barraDialogoCanvasGroup == null)
+                barraDialogoCanvasGroup = InterfaceDialogo.AddComponent<CanvasGroup>();
+        }
         // Pega o CanvasGroup automaticamente se não foi atribuído
         if (interfaceBarra != null && barraCanvasGroup == null)
         {
@@ -29,7 +28,6 @@ public class CanvaController : MonoBehaviour
         }
     }
     
->>>>>>> 3558477a291c97bef986402ad773f01d62afddc0
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
@@ -50,7 +48,6 @@ public class CanvaController : MonoBehaviour
             }
             Debug.Log($"Inventário {(inventarioAtivo ? "ativado" : "desativado")}.");
         }
-<<<<<<< HEAD
         if (DialogueManager.isActive == true)
         {
             if (barraDialogoCanvasGroup != null)
@@ -65,9 +62,6 @@ public class CanvaController : MonoBehaviour
                 barraDialogoCanvasGroup.alpha = 0f;  // Transparente
             }
         }
-=======
-        
->>>>>>> 3558477a291c97bef986402ad773f01d62afddc0
         if (inventarioAtivo)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -77,16 +71,6 @@ public class CanvaController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1f;
-        }
-    }
-     void Start()
-    {
-        // Pega o CanvasGroup automaticamente se não foi atribuído
-        if (InterfaceDialogo != null && barraDialogoCanvasGroup == null)
-        {
-            barraDialogoCanvasGroup = InterfaceDialogo.GetComponent<CanvasGroup>();
-            if (barraDialogoCanvasGroup == null)
-                barraDialogoCanvasGroup = InterfaceDialogo.AddComponent<CanvasGroup>();
         }
     }
 }
