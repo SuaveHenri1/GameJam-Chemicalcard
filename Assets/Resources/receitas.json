@@ -2,6 +2,8 @@
     "receitas" : [
         { "ingredientes": ["Na", "Cl"],     "resultado": "Sal"},
         { "ingredientes": ["H", "H", "O"],  "resultado": "Agua"},
-        { "ingredientes": ["K","N","O","O","O"], "resultado": "Nitrato de Potassio" }
+        { "ingredientes": ["K","N","O","O","O"], "resultado": "Nitrato de Potassio" },
+        { "ingredientes": ["H","Cl"], "resultado": "Acido Cloridrico" },
+        { "ingredientes": ["Na","O","H"], "resultado": "Hidroxido de Sodio" }
     ]
 }

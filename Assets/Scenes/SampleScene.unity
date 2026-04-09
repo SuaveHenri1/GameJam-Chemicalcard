@@ -2024,6 +2024,18 @@ PrefabInstance:
       propertyPath: 'SlotQuantidadeTextCartas.Array.data[3]'
       value: 
       objectReference: {fileID: 483562790}
+    - target: {fileID: 7288963499184121832, guid: 1bd63f1a5d71140be8803ed801b340db, type: 3}
+      propertyPath: CartaHidroxidoSodio
+      value: 
+      objectReference: {fileID: 11400000, guid: 549cec091ba1cd6f194e3b44ca5adbcf, type: 2}
+    - target: {fileID: 7288963499184121832, guid: 1bd63f1a5d71140be8803ed801b340db, type: 3}
+      propertyPath: CartaAcidoCloridrico
+      value: 
+      objectReference: {fileID: 11400000, guid: c622de0b70b147f3a906d8565a7bd3ea, type: 2}
+    - target: {fileID: 7288963499184121832, guid: 1bd63f1a5d71140be8803ed801b340db, type: 3}
+      propertyPath: CartaNitratoPotassio
+      value: 
+      objectReference: {fileID: 11400000, guid: c22f0a760ea1d288493e1a2cae08842e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bf4e239dcb8cc495857c41956c12bb0, type: 3}
-  m_Name: Agua
+  m_Name: Nitrato de Potassio
   m_EditorClassIdentifier: Assembly-CSharp::Cartas
-  nome: Agua
-  tipo: Liquido
+  nome: Nitrato de Potassio
+  tipo: "P\xF3"
   quantidade: 1
-  PH: 7
-  imagem: {fileID: 21300000, guid: 5685212f7b6483f5999c66abf66b5288, type: 3}
+  PH: 6
+  imagem: {fileID: 21300000, guid: 88985bc41566d2c6a8b57cb692e400e7, type: 3}
