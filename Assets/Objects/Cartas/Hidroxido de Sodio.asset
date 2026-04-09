@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bf4e239dcb8cc495857c41956c12bb0, type: 3}
-  m_Name: Agua
+  m_Name: Hidroxido de Sodio
   m_EditorClassIdentifier: Assembly-CSharp::Cartas
-  nome: Agua
-  tipo: Liquido
+  nome: Hidroxido de Sodio
+  tipo: Solido
   quantidade: 1
-  PH: 7
-  imagem: {fileID: 21300000, guid: 5685212f7b6483f5999c66abf66b5288, type: 3}
+  PH: 14
+  imagem: {fileID: 21300000, guid: 50170d8bfd25aa3a8a6c90bc25fa1de9, type: 3}
