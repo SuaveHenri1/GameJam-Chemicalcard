@@ -57,6 +57,10 @@ public class PlayerSimples : MonoBehaviour
 
     void Update()
     {
+        //Bloqueia a tela quando dialogo está ativo
+        if(DialogueManager.isActive == true)
+            return;
+
         // Bloqueia comandos se o jogador estiver ocupado atacando ou interagindo
         if (estadoAtual == EstadoPlayer.Interact || estadoAtual == EstadoPlayer.Attack) return;
 
