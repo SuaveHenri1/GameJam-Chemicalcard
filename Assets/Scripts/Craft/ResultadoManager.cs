@@ -6,10 +6,9 @@ using UnityEngine;
 public class ResultadoManager : MonoBehaviour
 {
 
-    public Cartas CartaAgua;
-    public Cartas CartaSal;
-    public Cartas CartaAcidoCloridrico;
-    public Cartas CartaHidroxidoSodio;
+    public Cartas CartaAgua; // Referência à carta de água
+    public Cartas CartaSal; // Referência à carta de sal
+    public Cartas CartaNitratoPotassio; // Referência à carta de fertilizante
 
     public Cartas ExibirResultado(string resultado)
     {
@@ -22,12 +21,9 @@ public class ResultadoManager : MonoBehaviour
             case "Sal":
                 Debug.Log("Você criou sal!");
                 return CartaSal; // Retorna a carta de sal
-            case "Acido Cloridrico":
-                Debug.Log("Você criou ácido clorídrico!");
-                return CartaAcidoCloridrico; // Retorna a carta de ácido clorídrico
-            case "Hidroxido de Sodio":
-                Debug.Log("Você criou hidróxido de sódio!");
-                return CartaHidroxidoSodio; // Retorna a carta de hidróxido de sódio
+            case "Nitrato de Potassio":
+                Debug.Log("Você criou nitrato de potássio!");
+                return CartaNitratoPotassio; // Retorna a carta de nitrato de potássio
             default:
                 Debug.Log("Combinação desconhecida.");
                 return null;
