@@ -5,7 +5,8 @@ using UnityEngine; // Importa a biblioteca do Unity para usar ScriptableObject e
 public class Cartas : ScriptableObject
 {
     public string nome; // Nome da carta
-    public string tipo; // tipo da carta (por exemplo, agua, fogo, terra, ar)
+    public string tipo; // tipo da carta 
     public int quantidade; // Quantidade da carta no inventário
+    public int PH; // Valor de PH da carta
     public Sprite imagem; // Imagem da carta
 }

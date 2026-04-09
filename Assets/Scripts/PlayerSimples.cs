@@ -38,6 +38,9 @@ public class PlayerSimples : MonoBehaviour
     public float dashDuration = 0.2f; // Tempo total de duração do dash
     private float dashTimer = 0f; // Cronômetro regressivo do dash
 
+    [Header("Combate e Status")]
+    public int PHJogador = 0;
+
     private Vector3 velocity; // Vetor para controle de física vertical
     private bool estavaNoChao = true; // Variável para detectar transição de pouso (agora em uso)
 
@@ -252,5 +255,11 @@ public class PlayerSimples : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + transform.forward, raioAtaque);
+    }
+
+    public void SetPHJogador(int valor)
+    {
+        PHJogador = valor;
+        Debug.Log($"STATUS: PH do jogador atualizado para {PHJogador}.");
     }
 }
