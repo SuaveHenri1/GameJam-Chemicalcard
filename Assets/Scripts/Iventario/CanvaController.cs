@@ -9,6 +9,8 @@ public class CanvaController : MonoBehaviour
     public GameObject InterfaceDialogo; // Referência ao objeto de interface do diálogo
     bool inventarioAtivo = false; // Controle de visibilidade do inventário
     public CanvasGroup barraDialogoCanvasGroup;
+    public CanvasGroup barraCanvasGroup;
+
 
     void Start()
     {
