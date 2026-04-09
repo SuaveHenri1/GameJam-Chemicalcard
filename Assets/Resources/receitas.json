@@ -1,7 +1,9 @@
 {
     "receitas" : [
-        { "ingredientes": ["H", "O"],       "resultado": "Agua"},
         { "ingredientes": ["Na", "Cl"],     "resultado": "Sal"},
-        { "ingredientes": ["H", "H", "O"],  "resultado": "Explosao"}
+        { "ingredientes": ["H", "H", "O"],  "resultado": "Agua"},
+        { "ingredientes": ["H", "Cl"],     "resultado": "Acido Cloridrico"},
+        { "ingredientes": ["Na", "H", "O"],  "resultado": "Hidroxido de Sodio"},
+        { "ingredientes": ["C", "O", "O"],  "resultado": "Dioxido de Carbono"}
     ]
 }

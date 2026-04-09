@@ -29,7 +29,7 @@ public class PlayerSimples : MonoBehaviour
     public float tempoAtaque = 0.5f; // Tempo de travamento durante o ataque
     private int hitsNoInimigo = 0; // Contador para o sistema de 3 acertos para vencer
 
-    [Header("Interação")]
+    //[Header("Interação")]
     public float raioDeInteracao = 2.5f; // Distância para detectar itens coletáveis
     private bool tinhaObjetoPerto = false; // Controle de proximidade de itens
 
@@ -37,6 +37,9 @@ public class PlayerSimples : MonoBehaviour
     public float dashSpeed = 20f; // Velocidade impulsionada do dash
     public float dashDuration = 0.2f; // Tempo total de duração do dash
     private float dashTimer = 0f; // Cronômetro regressivo do dash
+
+    [Header("Combate e Status")]
+    public int PHJogador = 0;
 
     private Vector3 velocity; // Vetor para controle de física vertical
     private bool estavaNoChao = true; // Variável para detectar transição de pouso (agora em uso)
@@ -104,13 +107,13 @@ public class PlayerSimples : MonoBehaviour
     // Detecta colisões físicas durante o movimento (ex: destruir baús no dash)
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (estadoAtual == EstadoPlayer.Dash && hit.collider.CompareTag("Interativo"))
+        /*if (estadoAtual == EstadoPlayer.Dash && hit.collider.CompareTag("Interativo"))
         {
             Debug.Log("COLISÃO: Objeto destruído por impacto.");
             Destroy(hit.gameObject); 
             if (textoInteragir != null) textoInteragir.SetActive(false);
-            tinhaObjetoPerto = false; 
-        }
+            tinhaObjetoPerto = false;
+        }*/
     }
 
     // Corotina para processar a sequência de ataque e hits
@@ -150,11 +153,11 @@ public class PlayerSimples : MonoBehaviour
 
         foreach (Collider obj in objetosPerto)
         {
-            if (obj.CompareTag("Interativo"))
+            /*if (obj.CompareTag("Interativo"))
             {
                 objetoInterativo = obj.gameObject;
                 break; 
-            }
+            }*/
         }
 
         if (objetoInterativo != null && estadoAtual != EstadoPlayer.Dash)
@@ -248,5 +251,11 @@ public class PlayerSimples : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + transform.forward, raioAtaque);
+    }
+
+    public void SetPHJogador(int valor)
+    {
+        PHJogador = valor;
+        Debug.Log($"STATUS: PH do jogador atualizado para {PHJogador}.");
     }
 }
