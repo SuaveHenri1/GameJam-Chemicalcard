@@ -122,11 +122,24 @@ public class BarraController : MonoBehaviour
         }
     }
 
+
     public Cartas BuscaCartaNaBarra(string nome)
     {
-        foreach (Cartas carta in slotsCartas)
+        for (int i=0; i < SlotImagemCartas.Length; i++)
         {
-            if(carta.nome == nome) return carta;
+            if(slotsCartas[i].nome == nome) {
+                Cartas cartas = slotsCartas[i];
+                SlotQuantidadeCartas[i]--;
+                SlotQuantidadeTextCartas[i].text = SlotQuantidadeCartas[i].ToString();
+                 if (SlotQuantidadeCartas[i] <= 0)
+                {
+                    // Remove a carta do slot
+                    slotsCartas[i] = null;
+                    SlotImagemCartas[i].sprite = null;
+                    SlotQuantidadeTextCartas[i].gameObject.SetActive(false);
+                }
+                return cartas;
+            }
         }
         return null;
     }

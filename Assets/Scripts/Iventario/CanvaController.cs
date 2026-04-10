@@ -34,7 +34,9 @@ public class CanvaController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
+            InterfaceDialogo.SetActive(inventarioAtivo);
             inventarioAtivo = !inventarioAtivo;
+            
             
             if (interfaceInventario != null)
             {
