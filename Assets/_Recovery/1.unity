@@ -416,8 +416,51 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4042337023281706003, guid: b07c706caf1f4b12ea4724ba45956a94, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 349897011}
+    - targetCorrespondingSourceObject: {fileID: 4042337023281706003, guid: b07c706caf1f4b12ea4724ba45956a94, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 349897010}
   m_SourcePrefab: {fileID: 100100000, guid: b07c706caf1f4b12ea4724ba45956a94, type: 3}
+--- !u!1 &349897009 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4042337023281706003, guid: b07c706caf1f4b12ea4724ba45956a94, type: 3}
+  m_PrefabInstance: {fileID: 349897008}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &349897010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349897009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 380355600ce568d4899fe47ca5ae57ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
+  messages:
+  - actorID: 0
+    message: Ola
+  - actorID: 0
+    message: diga
+  actors:
+  - name: Bianca
+--- !u!114 &349897011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349897009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede3c20ba9721e14f86e3e9d27602b8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPCDialogo
+  trigger: {fileID: 349897010}
 --- !u!114 &375402595 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4880599386239028295, guid: 064bf2002ea7300a3b0be4923b35facb, type: 3}
@@ -1476,18 +1519,58 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8387012203535182922, guid: 6ae4d801d82f4daefa200e307aa40e4b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 982359127}
   m_SourcePrefab: {fileID: 100100000, guid: 6ae4d801d82f4daefa200e307aa40e4b, type: 3}
 --- !u!224 &982359123 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7365917094647718139, guid: 6ae4d801d82f4daefa200e307aa40e4b, type: 3}
   m_PrefabInstance: {fileID: 982359122}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &982359124 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6768444222573375079, guid: 6ae4d801d82f4daefa200e307aa40e4b, type: 3}
+  m_PrefabInstance: {fileID: 982359122}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &982359125 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8109774638059079320, guid: 6ae4d801d82f4daefa200e307aa40e4b, type: 3}
+  m_PrefabInstance: {fileID: 982359122}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &982359126 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8387012203535182922, guid: 6ae4d801d82f4daefa200e307aa40e4b, type: 3}
   m_PrefabInstance: {fileID: 982359122}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &982359127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982359126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 600eb4e84d36d6640ba8bb62e3dffae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
+  actorName: {fileID: 982359125}
+  messageText: {fileID: 982359124}
+  backgroundBox: {fileID: 982359123}
 --- !u!114 &1001062559 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 110831716251912329, guid: 064bf2002ea7300a3b0be4923b35facb, type: 3}

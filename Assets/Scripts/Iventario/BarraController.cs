@@ -121,6 +121,15 @@ public class BarraController : MonoBehaviour
             Debug.Log($"Carta selecionada: {cartaSelecionada}");
         }
     }
+
+    public Cartas BuscaCartaNaBarra(string nome)
+    {
+        foreach (Cartas carta in slotsCartas)
+        {
+            if(carta.nome == nome) return carta;
+        }
+        return null;
+    }
     
     // Ativa a carta atualmente selecionada
     void AtivarCarta()
