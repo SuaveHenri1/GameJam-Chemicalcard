@@ -8,7 +8,8 @@ public class NPCDialogo : MonoBehaviour
     public BarraController barraController;
     public string QualCarta;
     public bool MissaoComprida = false;
-    private Cartas CartaNPC;
+    public Cartas CartaNPC = null;
+    public bool PlayerJaConversou = false;
 
     void Start()
     {
@@ -23,19 +24,33 @@ public class NPCDialogo : MonoBehaviour
     {
         if(player_detection && Input.GetKeyDown(KeyCode.E)) // So entra quando o jogador estiver perto e apertar o E
         {
-            if (MissaoComprida) // Se o jogador ja completou a missao ele recebe a mensagem final
+            // Estado na onde o jogador ja fez tudo com o NPC
+            if(PlayerJaConversou && CartaNPC != null)
             {
                 trigger.FinalDialogue();
-            }else if(!DialogueManager.isActive) // vai verificar se esta no meio do dialogo e se ja completou a missao
+                return;
+            }
+
+            // Se o jogador ja conversou com o NPC vai fazer a verificaçao se o jogador tem a carta
+            if (PlayerJaConversou && CartaNPC == null)
             {
-                Debug.Log("Conversa Inicializada!");
-                trigger.StartDialogue();
-                CartaNPC = barraController.BuscaCartaNaBarra(QualCarta);
-                if (CartaNPC != null) // Se achar a carta ele completa a missao
+                // Se achar a carta ele completa a missao
+                Cartas carta = barraController.BuscaCartaNaBarra(QualCarta);
+                if (carta != null)
                 {
+                    CartaNPC = carta;
                     MissaoComprida = true;
                     trigger.FinalDialogue();
+                    return;
                 }
+            }
+
+            // Estado de inicio de dialgo sem ter completado a missao
+            if(!DialogueManager.isActive && !MissaoComprida) // vai verificar se esta no meio do dialogo e se ja completou a missao
+            {
+                trigger.StartDialogue();
+                if(DialogueManager.isActive) PlayerJaConversou = true;
+                return;
             }
         }
     }
