@@ -7,7 +7,7 @@ public class NPCDialogo : MonoBehaviour
     public DialogueTrigger trigger;
     public BarraController barraController;
     public string QualCarta;
-    private bool MissaoComprida = false;
+    public bool MissaoComprida = false;
     private Cartas CartaNPC;
 
     void Start()
@@ -21,20 +21,22 @@ public class NPCDialogo : MonoBehaviour
 
     void Update()
     {
-        if(player_detection && Input.GetKeyDown(KeyCode.E) && !DialogueManager.isActive && !MissaoComprida)
+        if(player_detection && Input.GetKeyDown(KeyCode.E)) // So entra quando o jogador estiver perto e apertar o E
         {
-            Debug.Log("Conversa Inicializada!");
-            trigger.StartDialogue();
-            CartaNPC = barraController.BuscaCartaNaBarra(QualCarta);
-            if (CartaNPC != null)
+            if (MissaoComprida) // Se o jogador ja completou a missao ele recebe a mensagem final
             {
-                MissaoComprida = true;
                 trigger.FinalDialogue();
+            }else if(!DialogueManager.isActive) // vai verificar se esta no meio do dialogo e se ja completou a missao
+            {
+                Debug.Log("Conversa Inicializada!");
+                trigger.StartDialogue();
+                CartaNPC = barraController.BuscaCartaNaBarra(QualCarta);
+                if (CartaNPC != null) // Se achar a carta ele completa a missao
+                {
+                    MissaoComprida = true;
+                    trigger.FinalDialogue();
+                }
             }
-        }
-        else
-        {
-            trigger.FinalDialogue();
         }
     }
 

@@ -82,7 +82,7 @@ public class Inventario : MonoBehaviour
 
     void OnClickElemento(string simbolo, int index)
     {
-        
+        Debug.Log($"Clicando no elemento {simbolo}");
         // Criar uma nova imagem para representar o ingrediente selecionado
         GameObject novaImagem = new GameObject($"Ingrediente_{simbolo}"); // Nome do objeto para organização
         novaImagem.transform.SetParent(conteudoCrafting.transform); // Define o pai da nova imagem para o painel de ingredientes
