@@ -111,6 +111,16 @@ public class PlayerSimples : MonoBehaviour
     // Detecta colisões físicas durante o movimento (ex: destruir baús no dash)
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
+        if (hit.normal.y > 0.5f)
+        {
+            GosmaPH scriptGosma = hit.gameObject.GetComponent<GosmaPH>();
+            if (scriptGosma != null)
+            {
+                scriptGosma.RecebeAtaque(PHJogador);
+                QuicarNoInimigo();
+            }
+        }
+
         /*if (estadoAtual == EstadoPlayer.Dash && hit.collider.CompareTag("Interativo"))
         {
             Debug.Log("COLISÃO: Objeto destruído por impacto.");
@@ -126,7 +136,6 @@ public class PlayerSimples : MonoBehaviour
         estadoAtual = EstadoPlayer.Attack;
         Debug.Log("AÇÃO: Ataque em execução.");
 
-        // Detecta inimigos em uma área esférica à frente
         Collider[] inimigosAtingidos = Physics.OverlapSphere(transform.position + transform.forward, raioAtaque);
 
         foreach (Collider col in inimigosAtingidos)
@@ -140,7 +149,7 @@ public class PlayerSimples : MonoBehaviour
                 {
                     Debug.Log("COMBATE: Inimigo eliminado.");
                     Destroy(col.gameObject);
-                    hitsNoInimigo = 0; 
+                    hitsNoInimigo = 0;
                 }
             }
         }
@@ -261,5 +270,12 @@ public class PlayerSimples : MonoBehaviour
     {
         PHJogador = valor;
         Debug.Log($"STATUS: PH do jogador atualizado para {PHJogador}.");
+    }
+
+    public void QuicarNoInimigo()
+    {
+        velocity.y = jumpForce;
+        estadoAtual = EstadoPlayer.Jump;
+        Debug.Log("FÍSICA: Jogador quicou no inimigo!");
     }
 }
