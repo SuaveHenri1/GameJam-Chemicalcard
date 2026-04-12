@@ -15,4 +15,5 @@ MonoBehaviour:
   nome: Sal
   tipo: Solido
   quantidade: 1
-  imagem: {fileID: 21300000, guid: e2bc2ec19472057dc94f5f955b6dc0eb, type: 3}
+  PH: 7
+  imagem: {fileID: 21300000, guid: e760498e528e4057d9fc0a9f8c8839c5, type: 3}

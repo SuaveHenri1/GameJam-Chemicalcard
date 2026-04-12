@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class CanvaController : MonoBehaviour
 {
-    public GameObject interfaceInventario;
-    public GameObject interfaceBarra;
-    public CanvasGroup barraCanvasGroup; // Arraste o CanvasGroup aqui
-    
-    bool inventarioAtivo = false;
-    
+    public GameObject interfaceInventario; // Referência ao objeto de interface do inventário
+    public GameObject interfaceBarra; // Referência ao objeto de interface do crafting (se necessário)
+    public GameObject InterfaceDialogo; // Referência ao objeto de interface do diálogo
+    public CanvasGroup barraDialogoCanvasGroup;
+    public CanvasGroup barraCanvasGroup;
+    bool inventarioAtivo = false; // Controle de visibilidade do inventário
+
+
     void Start()
     {
+        // Pega o CanvasGroup automaticamente se não foi atribuído
+        if (InterfaceDialogo != null && barraDialogoCanvasGroup == null)
+        {
+            barraDialogoCanvasGroup = InterfaceDialogo.GetComponent<CanvasGroup>();
+            if (barraDialogoCanvasGroup == null)
+                barraDialogoCanvasGroup = InterfaceDialogo.AddComponent<CanvasGroup>();
+        }
         // Pega o CanvasGroup automaticamente se não foi atribuído
         if (interfaceBarra != null && barraCanvasGroup == null)
         {
@@ -25,7 +34,9 @@ public class CanvaController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
+            InterfaceDialogo.SetActive(inventarioAtivo);
             inventarioAtivo = !inventarioAtivo;
+            
             
             if (interfaceInventario != null)
             {
@@ -41,7 +52,20 @@ public class CanvaController : MonoBehaviour
             }
             Debug.Log($"Inventário {(inventarioAtivo ? "ativado" : "desativado")}.");
         }
-        
+        if (DialogueManager.isActive == true)
+        {
+            if (barraDialogoCanvasGroup != null)
+            {
+                barraDialogoCanvasGroup.alpha = 1f;  // Transparente
+            }
+        }
+        else
+        {
+            if (barraDialogoCanvasGroup != null)
+            {
+                barraDialogoCanvasGroup.alpha = 0f;  // Transparente
+            }
+        }
         if (inventarioAtivo)
         {
             Cursor.lockState = CursorLockMode.None;
