@@ -11,5 +11,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mundo.unity
     guid: eca38ba601d1712d7b3d200aecd643a3
+  - enabled: 1
+    path: Assets/Scenes/Player.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Puzzles.unity
+    guid: 657d65b3c4668551f9fb413bd3686519
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
