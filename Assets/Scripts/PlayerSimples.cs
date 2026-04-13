@@ -18,11 +18,11 @@ public class PlayerSimples : MonoBehaviour
     [Header("Animação 2D")]
     public Animator animador2D; // Gerencia a troca de sprites animados do personagem
 
-    [Header("Movimento")]
-    public float speed = 6f; // Velocidade de deslocamento horizontal       
+[Header("Movimento")]
+    [System.NonSerialized] public float speed = 6f; // Velocidade de deslocamento horizontal
     public float mouseSensitivity = 300f; // sensibilidade da rotação da câmera
-    public float jumpForce = 6f; // Força aplicada para o pulo
-    public float gravity = -20f; // Valor da aceleração da gravidade
+    [System.NonSerialized] public float jumpForce = 8f; // Força aplicada para o pulo
+    [System.NonSerialized] public float gravity = -25f; // Valor da aceleração da gravidade
 
     [Header("Ação de Ataque (Tecla Q)")]
     public float raioAtaque = 2.0f; // Distância de alcance do golpe
@@ -34,10 +34,9 @@ public class PlayerSimples : MonoBehaviour
     private bool tinhaObjetoPerto = false; // Controle de proximidade de itens
 
     [Header("Dash (Habilidade)")]
-    public float dashSpeed = 20f; // Velocidade impulsionada do dash
-    public float dashDuration = 0.2f; // Tempo total de duração do dash
+    [System.NonSerialized] public float dashSpeed = 20f; // Velocidade impulsionada do dash
+    [System.NonSerialized] public float dashDuration = 0.2f; // Tempo total de duração do dash
     private float dashTimer = 0f; // Cronômetro regressivo do dash
-
     [Header("Combate e Status")]
     public int PHJogador = 0;
 
