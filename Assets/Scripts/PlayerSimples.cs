@@ -117,6 +117,7 @@ public class PlayerSimples : MonoBehaviour
             {
                 scriptGosma.RecebeAtaque(PHJogador);
                 QuicarNoInimigo();
+                Destroy(hit.gameObject);
             }
         }
 
